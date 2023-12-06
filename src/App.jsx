@@ -1,21 +1,14 @@
 import './App.css';
-
-function CrudSection() {
-  return (
-    <div class="CrudSection">
-      <h1>Título da seção</h1>
-
-    </div>
-  );
-}
+import CrudSection from './components/CrudSection/CrudSection';
 
 export default function App() {
   return (
     <div id="App">
-      <header>React Learning - Consuming Simple Object Register API</header>
+      <header>React Learning - Consumindo <a href="https://github.com/Thiago-Henrique-Santos/LearningProjects/tree/main">Simple Object Register API</a></header>
       
       <main>
-        <CrudSection/>
+        <CrudSection title="Registrar"/>
+        <CrudSection title="Atualizar"/>
       </main>
 
       <footer>
