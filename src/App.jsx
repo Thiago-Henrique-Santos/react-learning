@@ -9,6 +9,8 @@ export default function App() {
       <main>
         <CrudSection title="Registrar"/>
         <CrudSection title="Atualizar"/>
+        <CrudSection title="Listar"/>
+        <CrudSection title="Deletar"/>
       </main>
 
       <footer>
