@@ -40,16 +40,22 @@ function Update() {
     return (
         <form class='insert-data-form'>
             <div>
-                <label>Primeiro nome:</label>
+                <label>Nome completo:</label>
                 <select>
                     <option value="default">Selecione</option>
                     <option value="uuid-1">Yuri Lemos</option>
-                    <option value="uuid-1">Pedro Souza</option>
+                    <option value="uuid-2">Pedro Souza</option>
                 </select>
             </div>
-            <div>
-                <label>Sobrenome:</label>
-                <input type='text' placeholder='Sobrenome'/>
+            <div class='double-input'>
+                <div>
+                    <label>Primeiro nome:</label>
+                    <input type='text' placeholder='Nome'/>
+                </div>
+                <div>
+                    <label>Sobrenome:</label>
+                    <input type='text' placeholder='Sobrenome'/>
+                </div>
             </div>
             <div>
                 <label>Data de nascimento:</label>

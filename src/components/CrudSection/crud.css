@@ -21,6 +21,18 @@
     margin-bottom: 20px;
 }
 
+.double-input {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.double-input div {
+    width: 45%;
+    margin-bottom: 0;
+}
+
 .insert-data-form label {
     width: 100%;
     display: inline-block;
