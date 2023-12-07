@@ -16,24 +16,24 @@
     text-align: center;
 }
 
-.insert-data-form div {
+.InsertData div {
     width: 100%;
     margin-bottom: 20px;
 }
 
-.double-input {
+.DoubleInput {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
 }
 
-.double-input div {
+.DoubleInput div {
     width: 45%;
     margin-bottom: 0;
 }
 
-.insert-data-form label {
+.InsertData label {
     width: 100%;
     display: inline-block;
 
@@ -43,11 +43,58 @@
     color: rgb(0, 0, 40);
 }
 
-.insert-data-form input,select {
+.InsertData input,select {
     width: 100%;
     height: 35px;
     padding: 5px;
 
     border-width: 0px;
     border-radius: 25px;
+}
+
+.InfoBox {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    padding: 10px;
+
+    border-radius: 25px;
+
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(123, 155, 252) lightcyan;
+
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.InfoBox::-webkit-scrollbar {
+    width: 12px;
+}
+
+.InfoBox::-webkit-scrollbar-track {
+    background-color: lightcyan;
+}
+
+.InfoBox::-webkit-scrollbar-thumb {
+    background-color: rgb(123, 155, 252);
+    border-radius: 20px;
+    border: 0px solid lightcyan;
+}
+
+.InfoBox::-webkit-scrollbar:hover {
+    width: 12px;
+}
+
+.InfoBox::-webkit-scrollbar-track:hover {
+    background-color: rgb(127, 204, 255);
+}
+
+.InfoBox::-webkit-scrollbar-thumb:hover {
+    background-color: royalblue;
+    border-radius: 20px;
+    border: 0px solid aquamarine;
+}
+
+.InfoBox section {
+    margin-bottom: 10px;
 }

@@ -4,14 +4,14 @@ function CrudSection({title}) {
     return (
       <section class='CrudSection'>
         <h1>{title}</h1>
-        <Update/>
+        <ReadAll/>
       </section>
     );
 }
 
 /*function Create() {
     return (
-        <form class='insert-data-form'>
+        <form class='InsertData'>
             <div>
                 <label>Primeiro nome:</label>
                 <input type='text' placeholder='Nome'/>
@@ -36,18 +36,18 @@ function CrudSection({title}) {
     );
 }*/
 
-function Update() {
+/*function Update() {
     return (
-        <form class='insert-data-form'>
+        <form class='InsertData'>
             <div>
                 <label>Nome completo:</label>
                 <select>
-                    <option value="default">Selecione</option>
-                    <option value="uuid-1">Yuri Lemos</option>
-                    <option value="uuid-2">Pedro Souza</option>
+                    <option value='default'>Selecione</option>
+                    <option value='uuid-1'>Yuri Lemos</option>
+                    <option value='uuid-2'>Pedro Souza</option>
                 </select>
             </div>
-            <div class='double-input'>
+            <div class='DoubleInput'>
                 <div>
                     <label>Primeiro nome:</label>
                     <input type='text' placeholder='Nome'/>
@@ -70,6 +70,29 @@ function Update() {
                 <input type='text' placeholder='Ex: 79.1'/>
             </div>
         </form>
+    );
+}*/
+
+function ReadAll() {
+    return(
+        <div class='InfoBox'>
+            <ShowInformation firstName='Pedro' lastName='Souza' birthdate='10/01/2000' height='1.80' weight='75.9'/>
+            <ShowInformation firstName='Pedro' lastName='Souza' birthdate='10/01/2000' height='1.80' weight='75.9'/>
+            <ShowInformation firstName='Pedro' lastName='Souza' birthdate='10/01/2000' height='1.80' weight='75.9'/>
+            <ShowInformation firstName='Pedro' lastName='Souza' birthdate='10/01/2000' height='1.80' weight='75.9'/>
+        </div>
+    );
+}
+
+function ShowInformation({firstName, lastName, birthdate, height, weight}) {
+    return(
+        <section>
+            <p><span>Primeiro nome:</span> {firstName}</p>
+            <p><span>Sobrenome:</span> {lastName}</p>
+            <p><span>Data de nascimento:</span> {birthdate}</p>
+            <p><span>Altura:</span> {height}</p>
+            <p><span>Peso:</span> {weight}</p>
+        </section>
     );
 }
 
