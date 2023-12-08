@@ -77,9 +77,9 @@ function ReadAll() {
     return(
         <div class='InfoBox'>
             <ShowInformation firstName='Pedro' lastName='Souza' birthdate='10/01/2000' height='1.80' weight='75.9'/>
-            <ShowInformation firstName='Pedro' lastName='Souza' birthdate='10/01/2000' height='1.80' weight='75.9'/>
-            <ShowInformation firstName='Pedro' lastName='Souza' birthdate='10/01/2000' height='1.80' weight='75.9'/>
-            <ShowInformation firstName='Pedro' lastName='Souza' birthdate='10/01/2000' height='1.80' weight='75.9'/>
+            <ShowInformation firstName='Yuri' lastName='Lemos' birthdate='12/05/2011' height='1.40' weight='39.8'/>
+            <ShowInformation firstName='Wesley' lastName='Rocha' birthdate='25/01/1998' height='1.75' weight='71.2'/>
+            <ShowInformation firstName='Guilherme' lastName='Mello' birthdate='02/07/1980' height='1.82' weight='80.1'/>
         </div>
     );
 }
