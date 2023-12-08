@@ -109,5 +109,16 @@
 }
 
 .InfoBox section {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.InfoBox p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: black;
+}
+
+.InfoBox p span {
+    font-weight: bold;
+    color: rgb(0, 0, 40);
 }
