@@ -58,7 +58,7 @@
     margin: auto;
     padding: 10px;
 
-    border-radius: 25px 12px 12px  25px;
+    border-radius: 25px 7px 7px  25px;
 
     overflow-y: scroll;
     scrollbar-width: thin;
@@ -69,15 +69,14 @@
 
 .InfoBox:hover {
     scrollbar-width: thin;
-    scrollbar-color: rgb(123, 155, 252) lightcyan;
+    scrollbar-color: rgb(123, 155, 252) rgba(255, 255, 255, 0.2);
 
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-/*.InfoBox:hover>::-webkit-scrollbar-track {
-    scrollbar-width: thin;
-    scrollbar-color: rgb(123, 155, 252) lightcyan;
-}*/
+.InfoBox:hover::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.2);
+}
 
 .InfoBox::-webkit-scrollbar {
     width: 12px;
@@ -100,13 +99,13 @@
 }
 
 .InfoBox::-webkit-scrollbar-track:hover {
-    background-color: rgb(127, 204, 255);
+    background-color: lightcyan;
 }
 
 .InfoBox::-webkit-scrollbar-thumb:hover {
     background-color: royalblue;
     border-radius: 20px;
-    border: 0px solid aquamarine;
+    border: 0px solid lightcyan;
 }
 
 .InfoBox section {
