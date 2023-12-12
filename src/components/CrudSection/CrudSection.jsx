@@ -110,6 +110,7 @@ function ShowInformation({firstName, lastName, birthdate, height, weight}) {
             <p><span>Data de nascimento:</span> {birthdate}</p>
             <p><span>Altura:</span> {height}</p>
             <p><span>Peso:</span> {weight}</p>
+            <button>DELETAR PESSOA</button>
         </section>
     );
 }
