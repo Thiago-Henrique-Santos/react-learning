@@ -7,10 +7,11 @@ export default function App() {
       <header>React Learning - Consumindo <a href="https://github.com/Thiago-Henrique-Santos/LearningProjects/tree/main">Simple Object Register API</a></header>
       
       <main>
-        <CrudSection title="Registrar"/>
-        <CrudSection title="Atualizar"/>
-        <CrudSection title="Listar"/>
-        <CrudSection title="Deletar"/>
+        <CrudSection type="create" title="Registrar"/>
+        <CrudSection type="update" title="Atualizar"/>
+        <CrudSection type="readAll"title="Listar Todos"/>
+        <CrudSection type="read"title="Pesquisar"/>
+        <CrudSection type="delete" title="Deletar"/>
       </main>
 
       <footer>

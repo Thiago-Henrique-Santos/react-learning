@@ -1,15 +1,34 @@
 import './crud.css';
 
-function CrudSection({title}) {
+function CrudSection({type, title}) {
+    const crudComponent = getCrudComponent(type);
     return (
       <section class='CrudSection'>
         <h1>{title}</h1>
-        <SearchPerson/>
+        {crudComponent};
       </section>
     );
 }
 
-/*function Create() {
+function getCrudComponent(type) {
+    switch (type) {
+        case "create":
+            return(<Create/>);
+        case "read":
+            return (<SearchPerson/>);
+        case "readAll":
+            return(<ReadAll/>);
+        case "update":
+            return(<Update/>);
+        case "delete":
+            return(<Create/>);
+        default:
+            console.log("Non-developed yet!");
+            break;
+    }
+}
+
+function Create() {
     return (
         <form class='InsertData'>
             <div>
@@ -34,9 +53,9 @@ function CrudSection({title}) {
             </div>
         </form>
     );
-}*/
+}
 
-/*function Update() {
+function Update() {
     return (
         <form class='InsertData'>
             <div>
@@ -71,9 +90,9 @@ function CrudSection({title}) {
             </div>
         </form>
     );
-}*/
+}
 
-/*function ReadAll() {
+function ReadAll() {
     return(
         <div class='InfoBox'>
             <ShowInformation firstName='Pedro' lastName='Souza' birthdate='10/01/2000' height='1.80' weight='75.9'/>
@@ -82,7 +101,7 @@ function CrudSection({title}) {
             <ShowInformation firstName='Guilherme' lastName='Mello' birthdate='02/07/1980' height='1.82' weight='80.1'/>
         </div>
     );
-}*/
+}
 
 function SearchPerson() {
     return(
