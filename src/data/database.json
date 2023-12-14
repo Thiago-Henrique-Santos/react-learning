@@ -1,0 +1,36 @@
+{
+	"everyone": [
+		{
+			"id": "5bd8c96a-2745-434b-891c-d9af8b872b77",
+			"firstName": "Wesley",
+			"lastName": "Souza",
+			"height": 1.92,
+			"weight": 85,
+			"birthdate": "2000-10-28T00:00:00.000Z"
+		},
+		{
+			"id": "36b3bc78-e967-4526-a6d0-782de4afbf85",
+			"firstName": "Pedro",
+			"lastName": "Souza",
+			"height": 1.75,
+			"weight": 75.8,
+			"birthdate": "2001-05-21T00:00:00.000Z"
+		},
+		{
+			"id": "e709593d-089b-4314-97d8-16e2f2c1673f",
+			"firstName": "Flávio",
+			"lastName": "Ferreira",
+			"height": 1.5,
+			"weight": 40.1,
+			"birthdate": "2017-03-01T00:00:00.000Z"
+		},
+		{
+			"id": "6b589c6a-61c2-4255-bdeb-4e62edcd0279",
+			"firstName": "Yuri",
+			"lastName": "Lemos",
+			"height": 1.8,
+			"weight": 78.1,
+			"birthdate": "2000-10-24T00:00:00.000Z"
+		}
+	]
+}
