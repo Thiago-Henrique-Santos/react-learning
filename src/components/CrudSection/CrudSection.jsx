@@ -1,4 +1,5 @@
 import './crud.css';
+import jsonData from './../../data/database.json';
 
 function CrudSection({type, title}) {
     const crudComponent = getCrudComponent(type);
@@ -20,10 +21,8 @@ function getCrudComponent(type) {
             return(<ReadAll/>);
         case "update":
             return(<Update/>);
-        case "delete":
-            return(<Create/>);
         default:
-            console.log("Non-developed yet!");
+            console.log("Non-developed!");
             break;
     }
 }
@@ -93,12 +92,20 @@ function Update() {
 }
 
 function ReadAll() {
+    let everyone = [];
+    jsonData.everyone.forEach((person) => {
+        everyone.push(person);
+    });
+
+    let showInformationList = everyone.map(person => 
+        <ShowInformation firstName={person.firstName} lastName={person.lastName} birthdate={person.birthdate} height={person.height} weight={person.weight}/>
+    );
+
+    console.log(showInformationList);
+
     return(
         <div class='InfoBox'>
-            <ShowInformation firstName='Pedro' lastName='Souza' birthdate='10/01/2000' height='1.80' weight='75.9'/>
-            <ShowInformation firstName='Yuri' lastName='Lemos' birthdate='12/05/2011' height='1.40' weight='39.8'/>
-            <ShowInformation firstName='Wesley' lastName='Rocha' birthdate='25/01/1998' height='1.75' weight='71.2'/>
-            <ShowInformation firstName='Guilherme' lastName='Mello' birthdate='02/07/1980' height='1.82' weight='80.1'/>
+            {showInformationList}
         </div>
     );
 }
