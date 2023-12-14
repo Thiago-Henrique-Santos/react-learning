@@ -11,7 +11,6 @@ export default function App() {
         <CrudSection type="update" title="Atualizar"/>
         <CrudSection type="readAll"title="Listar Todos"/>
         <CrudSection type="read"title="Pesquisar"/>
-        <CrudSection type="delete" title="Deletar"/>
       </main>
 
       <footer>
