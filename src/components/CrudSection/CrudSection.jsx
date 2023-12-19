@@ -55,14 +55,22 @@ function Create() {
 }
 
 function Update() {
+    let everyone = [];
+    jsonData.everyone.forEach((person) => {
+        everyone.push(person);
+    });
+
+    let options = everyone.map(person =>
+        <option value={person.id}>{person.firstName} {person.lastName}</option>
+    );
+
     return (
         <form class='InsertData'>
             <div>
                 <label>Nome completo:</label>
                 <select>
                     <option value='default'>Selecione</option>
-                    <option value='uuid-1'>Yuri Lemos</option>
-                    <option value='uuid-2'>Pedro Souza</option>
+                    {options};
                 </select>
             </div>
             <div class='DoubleInput'>
@@ -101,8 +109,6 @@ function ReadAll() {
         <ShowInformation firstName={person.firstName} lastName={person.lastName} birthdate={person.birthdate} height={person.height} weight={person.weight}/>
     );
 
-    console.log(showInformationList);
-
     return(
         <div class='InfoBox'>
             {showInformationList}
@@ -111,14 +117,22 @@ function ReadAll() {
 }
 
 function SearchPerson() {
+    let everyone = [];
+    jsonData.everyone.forEach((person) => {
+        everyone.push(person);
+    });
+
+    let options = everyone.map(person =>
+        <option value={person.id}>{person.firstName} {person.lastName}</option>
+    );
+
     return(
         <div class='SearchPerson'>
             <div class='InsertData'>
                 <label>Nome completo:</label>
                 <select>
                     <option value='default'>Selecione</option>
-                    <option value='uuid-1'>Yuri Lemos</option>
-                    <option value='uuid-2'>Pedro Souza</option>
+                    {options}
                 </select>
             </div>
             <div class='InfoBox IBSmall'>
