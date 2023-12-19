@@ -55,24 +55,9 @@ function Create() {
 }
 
 function Update() {
-    let everyone = [];
-    jsonData.everyone.forEach((person) => {
-        everyone.push(person);
-    });
-
-    let options = everyone.map(person =>
-        <option value={person.id}>{person.firstName} {person.lastName}</option>
-    );
-
     return (
         <form class='InsertData'>
-            <div>
-                <label>Nome completo:</label>
-                <select>
-                    <option value='default'>Selecione</option>
-                    {options};
-                </select>
-            </div>
+            <SelectPerson/>
             <div class='DoubleInput'>
                 <div>
                     <label>Primeiro nome:</label>
@@ -117,6 +102,17 @@ function ReadAll() {
 }
 
 function SearchPerson() {
+    return(
+        <div class='SearchPerson'>
+            <SelectPerson/>
+            <div class='InfoBox IBSmall'>
+                <ShowInformation firstName='Pedro' lastName='Souza' birthdate='10/01/2000' height='1.80' weight='75.9' />
+            </div>
+        </div>
+    );
+}
+
+function SelectPerson () {
     let everyone = [];
     jsonData.everyone.forEach((person) => {
         everyone.push(person);
@@ -126,18 +122,13 @@ function SearchPerson() {
         <option value={person.id}>{person.firstName} {person.lastName}</option>
     );
 
-    return(
-        <div class='SearchPerson'>
-            <div class='InsertData'>
-                <label>Nome completo:</label>
-                <select>
-                    <option value='default'>Selecione</option>
-                    {options}
-                </select>
-            </div>
-            <div class='InfoBox IBSmall'>
-                <ShowInformation firstName='Pedro' lastName='Souza' birthdate='10/01/2000' height='1.80' weight='75.9' />
-            </div>
+    return (
+        <div class='InsertData'>
+            <label>Nome completo:</label>
+            <select>
+                <option value='default'>Selecione</option>
+                {options}
+            </select>
         </div>
     );
 }
