@@ -77,7 +77,7 @@ function ReadAll() {
     });
 
     let showInformationList = everyone.map(person => 
-        <ShowInformation firstName={person.firstName} lastName={person.lastName} birthdate={person.birthdate} height={person.height} weight={person.weight}/>
+        <ShowInformation selectedPersonId={person.id}/>
     );
 
     return(
@@ -88,11 +88,17 @@ function ReadAll() {
 }
 
 function SearchPerson() {
+    const [selectedPerson, setSelectedPerson] = useState(null);
+
+    function handleSelectPerson(selectedPersonId) {
+        setSelectedPerson(selectedPersonId);
+    }
+
     return(
         <div class='SearchPerson'>
-            <SelectPerson/>
+            <SelectPerson onSelectPerson={handleSelectPerson}/>
             <div class='InfoBox IBSmall'>
-                <ShowInformation firstName='Pedro' lastName='Souza' birthdate='10/01/2000' height='1.80' weight='75.9' />
+                <ShowInformation selectedPersonId={selectedPerson}/>
             </div>
         </div>
     );
@@ -191,17 +197,27 @@ function DisplayInformation({selectedPersonId}){
     }
 }
 
-function ShowInformation({firstName, lastName, birthdate, height, weight}) {
-    return(
-        <section>
-            <p><span>Primeiro nome:</span> {firstName}</p>
-            <p><span>Sobrenome:</span> {lastName}</p>
-            <p><span>Data de nascimento:</span> {birthdate}</p>
-            <p><span>Altura:</span> {height}</p>
-            <p><span>Peso:</span> {weight}</p>
-            <button>DELETAR PESSOA</button>
-        </section>
-    );
+function ShowInformation({selectedPersonId}) {
+    let selectedPerson;
+    jsonData.everyone.forEach((person) => {
+        console.log(`Id r: ${selectedPersonId}\nId c: ${person.id}`);
+        if(person.id === selectedPersonId) {
+            selectedPerson = person;
+        }
+    });
+
+    if (selectedPerson) {
+        return(
+            <section>
+                <p><span>Primeiro nome:</span> {selectedPerson.firstName}</p>
+                <p><span>Sobrenome:</span> {selectedPerson.lastName}</p>
+                <p><span>Data de nascimento:</span> {selectedPerson.birthdate.slice(0, 10)}</p>
+                <p><span>Altura:</span> {selectedPerson.height}</p>
+                <p><span>Peso:</span> {selectedPerson.weight}</p>
+                <button>DELETAR PESSOA</button>
+            </section>
+        );
+    }
 }
 
 export default CrudSection;
