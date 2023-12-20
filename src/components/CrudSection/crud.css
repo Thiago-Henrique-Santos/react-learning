@@ -18,7 +18,7 @@
 
 .InsertData div {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .DoubleInput {
@@ -54,7 +54,7 @@
 
 .InfoBox {
     width: 100%;
-    height: 90%;
+    height: 84%;
     margin: auto;
     padding: 10px;
 
@@ -135,7 +135,22 @@
     color: rgb(0, 0, 40);
 }
 
-.InfoBox button {
+.InfoBox button:hover {
+    transform: scale(1.05);
+}
+
+.InfoBox button:active {
+    transform: scale(0.95);
+}
+
+.SearchPerson {
+    height: 95%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+}
+
+button.CallToAction {
     width: 150px;
     height: 25px;
 
@@ -150,17 +165,7 @@
     background-color: red;
 }
 
-.InfoBox button:hover {
-    transform: scale(1.05);
-}
-
-.InfoBox button:active {
-    transform: scale(0.95);
-}
-
-.SearchPerson {
-    height: 95%;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-evenly;
+button.CTABig {
+    height: 35px;
+    font-size: 20px;
 }

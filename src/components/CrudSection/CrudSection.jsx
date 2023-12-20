@@ -51,6 +51,9 @@ function Create() {
                 <label>Peso:</label>
                 <input type='text' placeholder='Ex: 79.1'/>
             </div>
+            <center>
+                <button className='CallToAction CTABig'>REGISTRAR</button>
+            </center>
         </form>
     );
 }
@@ -66,6 +69,9 @@ function Update() {
         <form class='InsertData'>
             <SelectPerson onSelectPerson={handleSelectPerson}/>
             <DisplayInformation selectedPersonId={selectedPerson}/>
+            <center>
+                <button className='CallToAction CTABig'>ATUALIZAR</button>
+            </center>
         </form>
     );
 }
@@ -200,7 +206,6 @@ function DisplayInformation({selectedPersonId}){
 function ShowInformation({selectedPersonId}) {
     let selectedPerson;
     jsonData.everyone.forEach((person) => {
-        console.log(`Id r: ${selectedPersonId}\nId c: ${person.id}`);
         if(person.id === selectedPersonId) {
             selectedPerson = person;
         }
@@ -214,7 +219,7 @@ function ShowInformation({selectedPersonId}) {
                 <p><span>Data de nascimento:</span> {selectedPerson.birthdate.slice(0, 10)}</p>
                 <p><span>Altura:</span> {selectedPerson.height}</p>
                 <p><span>Peso:</span> {selectedPerson.weight}</p>
-                <button>DELETAR PESSOA</button>
+                <button class='CallToAction'>DELETAR PESSOA</button>
             </section>
         );
     }
