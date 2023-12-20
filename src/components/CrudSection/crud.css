@@ -165,6 +165,10 @@ button.CallToAction {
     background-color: red;
 }
 
+button.CallToAction:hover {
+    transform: scale(1.1);
+}
+
 button.CTABig {
     height: 35px;
     font-size: 20px;
