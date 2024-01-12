@@ -1,6 +1,7 @@
 import './crud.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import jsonData from './../../data/database.json';
+import { getAll } from '../../api-request/crud';
 
 function CrudSection({type, title}) {
     const crudComponent = getCrudComponent(type);
@@ -77,12 +78,24 @@ function Update() {
 }
 
 function ReadAll() {
-    let everyone = [];
-    jsonData.everyone.forEach((person) => {
-        everyone.push(person);
-    });
+    let [everyone, setEveryone] = useState([]);
 
-    let showInformationList = everyone.map(person => 
+    useEffect(()=>{
+        const fetchData = async () => {
+            try {
+                const data = await getAll();
+                setEveryone(data);
+            } catch (error) {
+                console.error(`Erro ao receber dados: ${error}`);
+            }
+        }
+
+        fetchData();
+    }, []);
+
+    const everyoneArray = everyone && everyone.data ? everyone.data : [];
+
+    let showInformationList = everyoneArray.map(person => 
         <ShowInformation selectedPersonId={person.id}/>
     );
 
