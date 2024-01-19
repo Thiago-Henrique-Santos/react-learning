@@ -1,6 +1,5 @@
 import './crud.css';
 import { useEffect, useState } from 'react';
-import jsonData from './../../data/database.json';
 import { getAll, getPersonById } from '../../api-request/crud';
 
 function CrudSection({type, title}) {
@@ -165,11 +164,14 @@ function SelectPerson ({onSelectPerson}) {
 
 function DisplayInformation({selectedPersonId}){
     let selectedPerson;
+    
+    /*===== Espaço para retirar a pesquisa no JSON e passar para a API =====
     jsonData.everyone.forEach((person) => {
         if(person.id === selectedPersonId) {
             selectedPerson = person;
         }
     });
+    */
 
     if (selectedPerson) {
         return (
