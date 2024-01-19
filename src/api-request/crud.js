@@ -17,6 +17,42 @@ async function getAll() {
     }
 }
 
+async function getPersonByName(fullName) {
+    const completeURL = baseURL + `/person/resource?name=${fullName}`;
+    
+    try {
+        let response = await fetch(completeURL, {
+            method: "GET"
+        });
+
+        const data = await response.json();
+
+        return data;
+    } catch(error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+async function getPersonById(id) {
+    const completeURL = baseURL + `/person/${id}`;
+    
+    try {
+        let response = await fetch(completeURL, {
+            method: "GET"
+        });
+
+        const data = await response.json();
+
+        return data;
+    } catch(error) {
+        console.error(error);
+        throw error;
+    }
+}
+
 export {
-    getAll
+    getAll,
+    getPersonByName,
+    getPersonById
 };

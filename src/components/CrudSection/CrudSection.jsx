@@ -1,7 +1,7 @@
 import './crud.css';
 import { useEffect, useState } from 'react';
 import jsonData from './../../data/database.json';
-import { getAll } from '../../api-request/crud';
+import { getAll, getPersonById } from '../../api-request/crud';
 
 function CrudSection({type, title}) {
     const crudComponent = getCrudComponent(type);
@@ -124,17 +124,29 @@ function SearchPerson() {
 }
 
 function SelectPerson ({onSelectPerson}) {
+    let [everyone, setEveryone] = useState([]);
+
+    useEffect(()=>{
+        const fetchData = async () => {
+            try {
+                const data = await getAll();
+                setEveryone(data);
+            } catch (error) {
+                console.error(`Erro ao receber dados: ${error}`);
+            }
+        }
+
+        fetchData();
+    }, []);
+
     function handleChange (event) {
         const selectedPersonId = event.target.value;
         onSelectPerson(selectedPersonId);
     }
 
-    let everyone = [];
-    jsonData.everyone.forEach((person) => {
-        everyone.push(person);
-    });
+    const everyoneArray = everyone && everyone.data ? everyone.data : [];
 
-    let options = everyone.map(person =>
+    let options = everyoneArray.map(person =>
         <option key={person.id} value={person.id}>
             {person.firstName} {person.lastName}
         </option>
@@ -217,25 +229,39 @@ function DisplayInformation({selectedPersonId}){
 }
 
 function ShowInformation({selectedPersonId}) {
-    let selectedPerson;
-    jsonData.everyone.forEach((person) => {
-        if(person.id === selectedPersonId) {
-            selectedPerson = person;
-        }
-    });
+    let [selectedPerson, setSelectedPerson] = useState({});
 
-    if (selectedPerson) {
+    useEffect(()=>{
+        const fetchData = async () => {
+            try {
+                const data = await getPersonById(selectedPersonId);
+                setSelectedPerson(data);
+            } catch (error) {
+                console.error(`Erro ao receber dados: ${error}`);
+            }
+        };
+        fetchData();
+    }, [selectedPersonId]);
+
+    if (selectedPerson && selectedPerson.data) {
+        selectedPerson = selectedPerson.data;
         return(
             <section>
-                <p><span>Primeiro nome:</span> {selectedPerson.firstName}</p>
-                <p><span>Sobrenome:</span> {selectedPerson.lastName}</p>
-                <p><span>Data de nascimento:</span> {selectedPerson.birthdate.slice(0, 10)}</p>
+                <p><span>Primeiro nome:</span> {selectedPerson.firstname}</p>
+                <p><span>Sobrenome:</span> {selectedPerson.lastname}</p>
+                <p><span>Data de nascimento:</span> {formatAPIDate(selectedPerson.birthdate)}</p>
                 <p><span>Altura:</span> {selectedPerson.height}</p>
                 <p><span>Peso:</span> {selectedPerson.weight}</p>
                 <button class='CallToAction'>DELETAR PESSOA</button>
             </section>
         );
     }
+}
+
+function formatAPIDate (date) {
+    const formatedDate = date.split('-');
+    date = `${formatedDate[2]}/${formatedDate[1]}/${formatedDate[0]}`;
+    return date;
 }
 
 export default CrudSection;
