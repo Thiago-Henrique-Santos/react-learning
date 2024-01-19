@@ -107,7 +107,7 @@ function ReadAll() {
 }
 
 function SearchPerson() {
-    const [selectedPerson, setSelectedPerson] = useState(null);
+    const [selectedPerson, setSelectedPerson] = useState();
 
     function handleSelectPerson(selectedPersonId) {
         setSelectedPerson(selectedPersonId);
