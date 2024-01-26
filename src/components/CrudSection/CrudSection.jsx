@@ -1,6 +1,6 @@
 import './crud.css';
 import { useEffect, useState } from 'react';
-import { getAll, getPersonById } from '../../api-request/crud';
+import { getAll, getPersonById } from '../../resources/api-requests';
 
 function CrudSection({type, title}) {
     const crudComponent = getCrudComponent(type);
