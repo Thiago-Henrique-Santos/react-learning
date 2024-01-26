@@ -163,15 +163,21 @@ function SelectPerson ({onSelectPerson}) {
 }
 
 function DisplayInformation({selectedPersonId}){
-    let selectedPerson;
+    let [selectedPerson, setSelectedPerson] = useState({});
     
-    /*===== Espaço para retirar a pesquisa no JSON e passar para a API =====
-    jsonData.everyone.forEach((person) => {
-        if(person.id === selectedPersonId) {
-            selectedPerson = person;
+    useEffect(()=>{
+        try {
+            const fetchData = async ()=>{
+                let data = await getPersonById(selectedPersonId);
+                data = data.data;
+                setSelectedPerson(data);
+            }
+
+            fetchData();
+        } catch (error) {
+            console.error(`Erro ao receber dados: ${error}`);
         }
-    });
-    */
+    }, [selectedPersonId]);
 
     if (selectedPerson) {
         return (
@@ -179,16 +185,16 @@ function DisplayInformation({selectedPersonId}){
                 <div class='DoubleInput'>
                     <div>
                         <label>Primeiro nome:</label>
-                        <input type='text' placeholder='Nome' value={selectedPerson.firstName}/>
+                        <input type='text' placeholder='Nome' value={selectedPerson.firstname}/>
                     </div>
                     <div>
                         <label>Sobrenome:</label>
-                        <input type='text' placeholder='Sobrenome' value={selectedPerson.lastName}/>
+                        <input type='text' placeholder='Sobrenome' value={selectedPerson.lastname}/>
                     </div>
                 </div>
                 <div>
                     <label>Data de nascimento:</label>
-                    <input type='date' value={selectedPerson.birthdate.slice(0, 10)}/>
+                    <input type='date' value={selectedPerson.birthdate}/>
                 </div>
                 <div>
                     <label>Altura:</label>
