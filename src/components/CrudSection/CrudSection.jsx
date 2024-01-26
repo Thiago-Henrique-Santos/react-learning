@@ -1,11 +1,11 @@
 import './crud.css';
 import { useEffect, useState } from 'react';
-import { getAll, getPersonById } from '../../resources/api-requests';
+import { getAll, getPersonById, createPerson } from '../../resources/api-requests';
 
 function CrudSection({type, title}) {
     const crudComponent = getCrudComponent(type);
     return (
-      <section class='CrudSection'>
+      <section className='CrudSection'>
         <h1>{title}</h1>
         {crudComponent};
       </section>
@@ -28,33 +28,57 @@ function getCrudComponent(type) {
     }
 }
 
-function Create() {
+function Create() {    
+    async function handleClick() {
+        let firstName = document.getElementById('firstName').value;
+        let lastName = document.getElementById('lastName').value;
+        let birthdate = document.getElementById('birthdate').value;
+        let height = document.getElementById('height').value;
+        let weight = document.getElementById('weight').value;
+
+        const data = {
+            "firstName": firstName,
+            "lastName": lastName,
+            "birthdate": birthdate,
+            "height": height,
+            "weight": weight
+        }
+
+        try {
+            const person = await createPerson(data);
+            console.log(person);
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    };
+
     return (
-        <form class='InsertData'>
+        <section className='InsertData'>
             <div>
-                <label>Primeiro nome:</label>
-                <input type='text' placeholder='Nome'/>
+                <label htmlFor='firstName'>Primeiro nome:</label>
+                <input name='firstName' id='firstName' type='text' placeholder='Nome'/>
             </div>
             <div>
-                <label>Sobrenome:</label>
-                <input type='text' placeholder='Sobrenome'/>
+                <label htmlFor='lastName'>Sobrenome:</label>
+                <input name='lastName' id='lastName' type='text' placeholder='Sobrenome'/>
             </div>
             <div>
-                <label>Data de nascimento:</label>
-                <input type='date'/>
+                <label htmlFor='birthdate'>Data de nascimento:</label>
+                <input name='birthdate' id='birthdate' type='date'/>
             </div>
             <div>
-                <label>Altura:</label>
-                <input type='text' placeholder='Ex: 1.80'/>
+                <label htmlFor='height'>Altura:</label>
+                <input name='height' id='height' type='text' placeholder='Ex: 1.80'/>
             </div>
             <div>
-                <label>Peso:</label>
-                <input type='text' placeholder='Ex: 79.1'/>
+                <label htmlFor='weight'>Peso:</label>
+                <input name='weight' id='weight' type='text' placeholder='Ex: 79.1'/>
             </div>
             <center>
-                <button className='CallToAction CTABig'>REGISTRAR</button>
+                <button className='CallToAction CTABig' onClick={async ()=>{await handleClick()}}>REGISTRAR</button>
             </center>
-        </form>
+        </section>
     );
 }
 
@@ -66,7 +90,7 @@ function Update() {
     }
 
     return (
-        <form class='InsertData'>
+        <form className='InsertData'>
             <SelectPerson onSelectPerson={handleSelectPerson}/>
             <DisplayInformation selectedPersonId={selectedPerson}/>
             <center>
@@ -99,7 +123,7 @@ function ReadAll() {
     );
 
     return(
-        <div class='InfoBox'>
+        <div className='InfoBox'>
             {showInformationList}
         </div>
     );
@@ -113,9 +137,9 @@ function SearchPerson() {
     }
 
     return(
-        <div class='SearchPerson'>
+        <div className='SearchPerson'>
             <SelectPerson onSelectPerson={handleSelectPerson}/>
-            <div class='InfoBox IBSmall'>
+            <div className='InfoBox IBSmall'>
                 <ShowInformation selectedPersonId={selectedPerson}/>
             </div>
         </div>
@@ -152,7 +176,7 @@ function SelectPerson ({onSelectPerson}) {
     );
 
     return (
-        <div class='InsertData'>
+        <div className='InsertData'>
             <label>Nome completo:</label>
             <select onChange={handleChange}>
                 <option key={0} value='default'>Selecione</option>
@@ -182,7 +206,7 @@ function DisplayInformation({selectedPersonId}){
     if (selectedPerson) {
         return (
             <>
-                <div class='DoubleInput'>
+                <div className='DoubleInput'>
                     <div>
                         <label>Primeiro nome:</label>
                         <input type='text' placeholder='Nome' value={selectedPerson.firstname}/>
@@ -209,7 +233,7 @@ function DisplayInformation({selectedPersonId}){
     } else {
         return (
             <>
-                <div class='DoubleInput'>
+                <div className='DoubleInput'>
                     <div>
                         <label>Primeiro nome:</label>
                         <input type='text' placeholder='Nome' value={''}/>
@@ -260,7 +284,7 @@ function ShowInformation({selectedPersonId}) {
                 <p><span>Data de nascimento:</span> {formatAPIDate(selectedPerson.birthdate)}</p>
                 <p><span>Altura:</span> {selectedPerson.height}</p>
                 <p><span>Peso:</span> {selectedPerson.weight}</p>
-                <button class='CallToAction'>DELETAR PESSOA</button>
+                <button className='CallToAction'>DELETAR PESSOA</button>
             </section>
         );
     }

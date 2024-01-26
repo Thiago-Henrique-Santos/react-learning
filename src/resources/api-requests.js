@@ -51,8 +51,23 @@ async function getPersonById(id) {
     }
 }
 
+async function createPerson (data) {
+    try {
+        const fetchData = await fetch('http://localhost:3333/api/person', {
+            method: "POST",
+            body: JSON.stringify(data),
+        });
+
+        return fetchData;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
 export {
     getAll,
     getPersonByName,
-    getPersonById
+    getPersonById,
+    createPerson
 };
