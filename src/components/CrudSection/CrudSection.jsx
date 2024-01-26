@@ -46,7 +46,9 @@ function Create() {
 
         try {
             const person = await createPerson(data);
+            console.log("V ==== CrudSection ==== V");
             console.log(person);
+            console.log("^ ===================== ^");
         } catch (error) {
             console.error(error);
             throw error;
