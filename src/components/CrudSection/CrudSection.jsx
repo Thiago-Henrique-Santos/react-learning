@@ -1,6 +1,6 @@
 import './crud.css';
 import { useEffect, useState } from 'react';
-import { getAll, getPersonById, createPerson } from '../../resources/api-requests';
+import { getAll, getPersonById, createPerson, updatePerson } from '../../resources/api-requests';
 
 function CrudSection({type, title}) {
     const crudComponent = getCrudComponent(type);
@@ -85,6 +85,32 @@ function Create() {
 }
 
 function Update() {
+    async function handleClick() {
+        let firstName = document.getElementById('firstNameUpdate').value;
+        let lastName = document.getElementById('lastNameUpdate').value;
+        let birthdate = document.getElementById('birthdateUpdate').value;
+        let height = document.getElementById('heightUpdate').value;
+        let weight = document.getElementById('weightUpdate').value;
+
+        const data = {
+            "firstName": firstName,
+            "lastName": lastName,
+            "birthdate": birthdate,
+            "height": height,
+            "weight": weight
+        }
+
+        try {
+            const person = await updatePerson(data);
+
+            alert(`Cadastrado de ${person.firstName} ${person.lastName} atualizado com sucesso!`);
+            window.location.reload();
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    };
+    
     const [selectedPerson, setSelectedPerson] = useState(null);
 
     function handleSelectPerson(selectedPersonId) {
@@ -92,13 +118,13 @@ function Update() {
     }
 
     return (
-        <form className='InsertData'>
+        <section className='InsertData'>
             <SelectPerson onSelectPerson={handleSelectPerson}/>
             <DisplayInformation selectedPersonId={selectedPerson}/>
             <center>
-                <button className='CallToAction CTABig'>ATUALIZAR</button>
+                <button className='CallToAction CTABig' onClick={async ()=>{await handleClick()}}>ATUALIZAR</button>
             </center>
-        </form>
+        </section>
     );
 }
 
@@ -158,6 +184,7 @@ function SelectPerson ({onSelectPerson}) {
                 setEveryone(data);
             } catch (error) {
                 console.error(`Erro ao receber dados: ${error}`);
+                throw error;
             }
         }
 
@@ -190,7 +217,7 @@ function SelectPerson ({onSelectPerson}) {
 
 function DisplayInformation({selectedPersonId}){
     let [selectedPerson, setSelectedPerson] = useState({});
-    
+
     useEffect(()=>{
         try {
             const fetchData = async ()=>{
@@ -205,61 +232,45 @@ function DisplayInformation({selectedPersonId}){
         }
     }, [selectedPersonId]);
 
-    if (selectedPerson) {
-        return (
-            <>
-                <div className='DoubleInput'>
-                    <div>
-                        <label>Primeiro nome:</label>
-                        <input type='text' placeholder='Nome' value={selectedPerson.firstname}/>
-                    </div>
-                    <div>
-                        <label>Sobrenome:</label>
-                        <input type='text' placeholder='Sobrenome' value={selectedPerson.lastname}/>
-                    </div>
-                </div>
-                <div>
-                    <label>Data de nascimento:</label>
-                    <input type='date' value={selectedPerson.birthdate}/>
-                </div>
-                <div>
-                    <label>Altura:</label>
-                    <input type='text' placeholder='Ex: 1.80' value={selectedPerson.height}/>
-                </div>
-                <div>
-                    <label>Peso:</label>
-                    <input type='text' placeholder='Ex: 79.1' value={selectedPerson.weight}/>
-                </div>
-            </>
-        );
+    let info = {};
+    if(!selectedPerson) {
+        info = {
+            firstname: '',
+            lastname: '',
+            birthdate: '',
+            height: '',
+            weight: ''
+        }
     } else {
-        return (
-            <>
-                <div className='DoubleInput'>
-                    <div>
-                        <label>Primeiro nome:</label>
-                        <input type='text' placeholder='Nome' value={''}/>
-                    </div>
-                    <div>
-                        <label>Sobrenome:</label>
-                        <input type='text' placeholder='Sobrenome' value={''}/>
-                    </div>
-                </div>
-                <div>
-                    <label>Data de nascimento:</label>
-                    <input type='date' value={''}/>
-                </div>
-                <div>
-                    <label>Altura:</label>
-                    <input type='text' placeholder='Ex: 1.80' value={''}/>
-                </div>
-                <div>
-                    <label>Peso:</label>
-                    <input type='text' placeholder='Ex: 79.1' value={''}/>
-                </div>
-            </>
-        );
+        info = selectedPerson;
     }
+
+    return (
+        <section>
+            <div className='DoubleInput'>
+                <div>
+                    <label htmlFor='firstNameUpdate'>Primeiro nome:</label>
+                    <input id='firstNameUpdate' name='firstNameUpdate' type='text' placeholder='Nome' defaultValue={info.firstname}/>
+                </div>
+                <div>
+                    <label htmlFor='lastNameUpdate'>Sobrenome:</label>
+                    <input id='lastNameUpdate' name='lastNameUpdate' type='text' placeholder='Sobrenome' defaultValue={info.lastname}/>
+                </div>
+            </div>
+            <div>
+                <label htmlFor='birthdateUpdate'>Data de nascimento:</label>
+                <input id='birthdateUpdate' name='birthdateUpdate' type='date' defaultValue={info.birthdate}/>
+            </div>
+            <div>
+                <label htmlFor='heightUpdate'>Altura:</label>
+                <input id='heightUpdate' name='heightUpdate' type='text' placeholder='Ex: 1.80' defaultValue={info.height}/>
+            </div>
+            <div>
+                <label htmlFor='weightUpdate'>Peso:</label>
+                <input id='weightUpdate' name='weightUpdate' type='text' placeholder='Ex: 79.1' defaultValue={info.weight}/>
+            </div>
+        </section>
+    );
 }
 
 function ShowInformation({selectedPersonId}) {

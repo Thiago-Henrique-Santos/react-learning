@@ -67,9 +67,26 @@ async function createPerson (data) {
     }
 }
 
+async function updatePerson (data) {
+    try {
+        const fetchData = await fetch('http://localhost:3333/api/person', {
+            method: "PUT",
+            body: JSON.stringify(data),
+        });
+
+        const response = fetchData.json();
+
+        return response;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
 export {
     getAll,
     getPersonByName,
     getPersonById,
-    createPerson
+    createPerson,
+    updatePerson
 };
