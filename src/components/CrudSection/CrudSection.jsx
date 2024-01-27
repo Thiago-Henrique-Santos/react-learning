@@ -93,11 +93,12 @@ function Update() {
         let weight = document.getElementById('weightUpdate').value;
 
         const data = {
+            "id": selectedPerson,
             "firstName": firstName,
             "lastName": lastName,
-            "birthdate": birthdate,
             "height": height,
-            "weight": weight
+            "weight": weight,
+            "birthdate": birthdate
         }
 
         try {
