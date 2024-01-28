@@ -148,7 +148,7 @@ function ReadAll() {
     const everyoneArray = everyone && everyone.data ? everyone.data : [];
 
     let showInformationList = everyoneArray.map(person => 
-        <ShowInformation selectedPersonId={person.id}/>
+        <ShowInformation key={person.id} selectedPersonId={person.id}/>
     );
 
     return(
