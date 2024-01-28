@@ -7,7 +7,7 @@ function CrudSection({type, title}) {
     return (
       <section className='CrudSection'>
         <h1>{title}</h1>
-        {crudComponent};
+        {crudComponent}
       </section>
     );
 }
