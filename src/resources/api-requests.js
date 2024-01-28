@@ -83,10 +83,29 @@ async function updatePerson (data) {
     }
 }
 
+async function deletePerson (id) {
+    try {
+        console.log("====================");
+        console.log(id);
+        console.log("====================");
+        const fetchData = await fetch(`http://localhost:3333/api/person/${id}`, {
+            method: "DELETE"
+        });
+
+        const response = fetchData.json();
+
+        return response;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
 export {
     getAll,
     getPersonByName,
     getPersonById,
     createPerson,
-    updatePerson
+    updatePerson,
+    deletePerson
 };

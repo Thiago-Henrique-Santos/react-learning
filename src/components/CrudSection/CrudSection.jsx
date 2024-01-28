@@ -1,6 +1,6 @@
 import './crud.css';
 import { useEffect, useState } from 'react';
-import { getAll, getPersonById, createPerson, updatePerson } from '../../resources/api-requests';
+import { getAll, getPersonById, createPerson, updatePerson, deletePerson } from '../../resources/api-requests';
 
 function CrudSection({type, title}) {
     const crudComponent = getCrudComponent(type);
@@ -275,6 +275,18 @@ function DisplayInformation({selectedPersonId}){
 }
 
 function ShowInformation({selectedPersonId}) {
+    async function handleClick () {
+        try {
+            let response = await deletePerson(selectedPersonId);
+            response = response.deleteMessage;
+            alert(response);
+            window.location.reload();
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+
     let [selectedPerson, setSelectedPerson] = useState({});
 
     useEffect(()=>{
@@ -298,7 +310,7 @@ function ShowInformation({selectedPersonId}) {
                 <p><span>Data de nascimento:</span> {formatAPIDate(selectedPerson.birthdate)}</p>
                 <p><span>Altura:</span> {selectedPerson.height}</p>
                 <p><span>Peso:</span> {selectedPerson.weight}</p>
-                <button className='CallToAction'>DELETAR PESSOA</button>
+                <button className='CallToAction' onClick={handleClick}>DELETAR PESSOA</button>
             </section>
         );
     }
