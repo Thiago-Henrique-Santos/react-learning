@@ -71,7 +71,7 @@ async function updatePerson (data) {
     try {
         const fetchData = await fetch('http://localhost:3333/api/person', {
             method: "PUT",
-            body: JSON.stringify(data),
+            body: JSON.stringify(data)
         });
 
         const response = fetchData.json();
