@@ -3,7 +3,7 @@
 ## Descrição
 Projeto simples para aprender a desenvolver interfaces com ReactJS e consumir APIs. Neste projeto consumi uma API própria, local, mas externa com relação a este projeto.
 
-Neste projeto tive a oportunidade foquei em conceitos básicos do React, como a **criação de componentes** e **Hooks simples**, por exemplo **useState** e **useEffect**.
+Neste projeto tive a oportunidade de aprender conceitos básicos do React, como a **criação de componentes** e **Hooks simples**, por exemplo **useState** e **useEffect**, e o **consumo de APIs**.
 
 Link do repositório da API (acesse o repositório SimpleObjectRegister): https://github.com/Thiago-Henrique-Santos/LearningProjects
 
